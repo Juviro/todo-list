@@ -1,13 +1,10 @@
-import { connect } from "react-redux";
-import { openModal } from "../../actions.js/index.js";
+import { graphql, compose } from "react-apollo";
 
 import AddTaskButton from "./AddTaskButton";
+import { OPEN_MODAL } from "../../queries/modal";
 
-const mapDispatchToProps = dispatch => ({
-  onCreateTask: () => dispatch(openModal("CREATE_TASK")),
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
+export default compose(
+  graphql(OPEN_MODAL, {
+    name: "openModal",
+  })
 )(AddTaskButton);

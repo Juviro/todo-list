@@ -1,18 +1,35 @@
 import "babel-polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import "./index.css";
-import store from "./store";
 
+import { ApolloLink } from "apollo-link";
+import { HttpLink } from "apollo-link-http";
+import { ApolloClient } from "apollo-client";
+import { ApolloProvider } from "react-apollo";
+import { withClientState } from "apollo-link-state";
+import { InMemoryCache } from "apollo-cache-inmemory";
+
+import "./index.css";
 import App from "./components/App/App";
 import * as serviceWorker from "./serviceWorker";
+import { defaults, resolvers } from "./resolvers/";
+
+const httpLink = new HttpLink({
+  uri: "http://localhost:4000/graphql",
+});
+
+const cache = new InMemoryCache();
+const stateLink = withClientState({ resolvers, cache, defaults });
+
+const client = new ApolloClient({
+  link: ApolloLink.from([stateLink, httpLink]),
+  cache,
+});
 
 ReactDOM.render(
-  <Provider store={store}>
+  <ApolloProvider client={client}>
     <App />
-  </Provider>,
+  </ApolloProvider>,
   document.getElementById("root")
 );
-
 serviceWorker.unregister();

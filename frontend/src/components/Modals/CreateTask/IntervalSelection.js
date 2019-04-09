@@ -49,7 +49,9 @@ export default ({
       <ElementWrapper>
         <Select autoWidth onChange={onChangeIntervalUnit} value={intervalUnit}>
           {intervalUnitOptions.map(option => (
-            <MenuItem value={option}>{option}</MenuItem>
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
           ))}
         </Select>
       </ElementWrapper>

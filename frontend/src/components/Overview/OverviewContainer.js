@@ -1,15 +1,12 @@
-import { connect } from "react-redux";
+import { graphql, compose } from "react-apollo";
+
 import Overview from "./Overview";
+import { GET_TASKS } from "../../queries/task";
 
-import { openModal } from "../../actions.js";
-
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = dispatch => ({
-  onFinishTask: () => dispatch(openModal("FINISH_TASK")),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  graphql(GET_TASKS, {
+    props: ({ data: { tasks } }) => ({
+      tasks,
+    }),
+  })
 )(Overview);

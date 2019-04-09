@@ -4,7 +4,7 @@
   "author": "juviro <hauketw@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"cd ./backend && node server.js\" \"cd ./frontend && yarn start\""
+    "start": "concurrently \"cd ./backend && yarn start\" \"cd ./frontend && yarn start\""
   },
   "dependencies": {
     "is-builtin-module": "^3.0.0"

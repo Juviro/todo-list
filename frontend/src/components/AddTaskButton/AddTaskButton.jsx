@@ -37,11 +37,11 @@ const Wrapper = styled.div`
   ${({ animationActive }) => animationActive && rotateAnimation}
 `;
 
-const AddTaskButton = ({ onCreateTask }) => {
+const AddTaskButton = ({ openModal }) => {
   const [animationActive, setIsAnimationActive] = useState(false);
 
   const onClick = () => {
-    onCreateTask();
+    openModal({ variables: { name: "CREATE_TASK" } });
     setIsAnimationActive(true);
   };
 

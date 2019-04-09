@@ -13,7 +13,7 @@ const TaskSchema = new Schema({
     required: true,
   },
   lastDone: {
-    type: Schema.Types.Date,
+    type: String,
   },
   interval: {
     type: Schema.Types.Number,

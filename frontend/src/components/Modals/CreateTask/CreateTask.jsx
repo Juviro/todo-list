@@ -5,10 +5,12 @@ import { withTheme } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 
+import BaseModal from "../Base/Modal.js";
 import ModalHeader from "../Base/ModalHeader";
 import IntervalSelection from "./IntervalSelection";
 
 import { TIME_UNITS } from "../../../constants/global";
+import { getIntervalInMillies } from "../../../utils/time";
 
 const ContentWrapper = styled.div`
   margin-top: 24px;
@@ -41,30 +43,47 @@ class CreateTask extends React.Component {
     this.setState({ intervalUnit: event.target.value });
   };
 
+  onSubmit = () => {
+    const interval = getIntervalInMillies(
+      this.state.intervalCount,
+      this.state.intervalUnit
+    );
+
+    this.props
+      .onCreateTask({
+        variables: { interval, description: this.state.taskName },
+      })
+      .then(this.props.onClose);
+  };
+
   render() {
-    return [
-      <ModalHeader>Neue Aufgabe hinzufügen</ModalHeader>,
-      <ContentWrapper>
-        <Input
-          placeholder="Was muss erledigt werden?"
-          value={this.state.taskName}
-          onChange={this.onChangeTaskName}
-          fullWidth
-        />
-        <IntervalSelection
-          onChangeIntervalCount={this.onChangeIntervalCount}
-          onChangeIntervalUnit={this.onChangeIntervalUnit}
-          intervalCount={this.state.intervalCount}
-          intervalUnit={this.state.intervalUnit}
-        />
-        <ButtonContainer>
-          <Button color="secondary" onClick={this.props.onCloseModal}>
-            abbrechen
-          </Button>
-          <Button color="primary">hinzufügen</Button>
-        </ButtonContainer>
-      </ContentWrapper>,
-    ];
+    return (
+      <BaseModal onBackdropClick={this.props.onClose}>
+        <ModalHeader>Neue Aufgabe hinzufügen</ModalHeader>,
+        <ContentWrapper>
+          <Input
+            placeholder="Was muss erledigt werden?"
+            value={this.state.taskName}
+            onChange={this.onChangeTaskName}
+            fullWidth
+          />
+          <IntervalSelection
+            onChangeIntervalCount={this.onChangeIntervalCount}
+            onChangeIntervalUnit={this.onChangeIntervalUnit}
+            intervalCount={this.state.intervalCount}
+            intervalUnit={this.state.intervalUnit}
+          />
+          <ButtonContainer>
+            <Button color="secondary" onClick={this.props.onClose}>
+              abbrechen
+            </Button>
+            <Button color="primary" onClick={this.onSubmit}>
+              hinzufügen
+            </Button>
+          </ButtonContainer>
+        </ContentWrapper>
+      </BaseModal>
+    );
   }
 }
 

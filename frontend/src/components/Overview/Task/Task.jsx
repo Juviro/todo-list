@@ -4,7 +4,7 @@ import Icons from "./Icons";
 import ProgressBar from "./ProgressBar";
 import Subtitles from "./Subtitles";
 
-const ItemWrapper = styled.div`
+const TaskWrapper = styled.div`
   flex: 1;
   margin: 10px;
   display: flex;
@@ -36,23 +36,17 @@ const TopRowWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Item = ({
-  title,
-  progress,
-  displayItemsFullscreen,
-  index,
-  onFinishTask,
-}) => (
-  <ItemWrapper displayItemsFullscreen={displayItemsFullscreen} index={index}>
+const Task = ({ description, progress, index, onFinishTask }) => (
+  <TaskWrapper index={index}>
     <TopRowWrapper>
       <TitleWrapper>
-        <Title>{title}</Title>
+        <Title>{description}</Title>
       </TitleWrapper>
       <Icons onFinishTask={onFinishTask} />
     </TopRowWrapper>
     <Subtitles />
     <ProgressBar progress={progress} />
-  </ItemWrapper>
+  </TaskWrapper>
 );
 
-export default Item;
+export default Task;

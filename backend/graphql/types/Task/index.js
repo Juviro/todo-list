@@ -2,7 +2,7 @@ export default `
   type Task {
     _id: String!
     description: String!
-    lastDone: Int
+    lastDone: String
     interval: Int!
   }
 

@@ -13,6 +13,7 @@ export default {
   },
   Mutation: {
     createTask: async (parent, { task }, context, info) => {
+      task.lastDone = task.lastDone || Date.now();
       const newTask = await new Task(task);
 
       return new Promise((resolve, reject) => {

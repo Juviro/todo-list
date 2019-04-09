@@ -1,17 +1,13 @@
-import { connect } from "react-redux";
-import { closeModal } from "../../actions.js";
+import { graphql, compose } from "react-apollo";
 
 import Modals from "./Modals";
+import { CLOSE_MODAL, GET_CURRENT_MODAL } from "../../queries/modal";
 
-const mapStateToProps = state => ({
-  currentModal: state.navigation.modal.currentModal,
-});
-
-const mapDispatchToProps = dispatch => ({
-  onCloseModal: () => dispatch(closeModal()),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  graphql(CLOSE_MODAL, { name: "onCloseModal" }),
+  graphql(GET_CURRENT_MODAL, {
+    props: ({ data: { modal } }) => ({
+      currentModal: modal.currentModal,
+    }),
+  })
 )(Modals);
