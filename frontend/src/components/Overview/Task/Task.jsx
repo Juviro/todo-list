@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Icons from "./Icons";
+import ItemActions from "./ItemActionsContainer";
 import ProgressBar from "./ProgressBar";
 import Subtitles from "./Subtitles";
 
@@ -23,6 +23,7 @@ const TaskWrapper = styled.div`
 
 const TitleWrapper = styled.div`
   width: 150px;
+  overflow-x: hidden;
 `;
 
 const Title = styled.div`
@@ -36,15 +37,23 @@ const TopRowWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Task = ({ description, progress, index, onFinishTask }) => (
+const Task = ({
+  description,
+  progress,
+  index,
+  onFinishTask,
+  lastDone,
+  interval,
+  _id,
+}) => (
   <TaskWrapper index={index}>
     <TopRowWrapper>
       <TitleWrapper>
         <Title>{description}</Title>
       </TitleWrapper>
-      <Icons onFinishTask={onFinishTask} />
+      <ItemActions taskId={_id} />
     </TopRowWrapper>
-    <Subtitles />
+    <Subtitles lastDone={lastDone} interval={interval} />
     <ProgressBar progress={progress} />
   </TaskWrapper>
 );

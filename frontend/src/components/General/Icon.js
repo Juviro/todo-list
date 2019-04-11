@@ -4,7 +4,7 @@ import MaterialIcon from "material-icons-react";
 
 const DEFAULT_SIZE = 32;
 
-const ItemWrapper = styled.div`
+const IconWrapper = styled.div`
   width: 40px;
   height: 40px;
   padding: 2px;
@@ -14,16 +14,22 @@ const ItemWrapper = styled.div`
   user-select: none;
 `;
 
+const IconHeight = styled.div`
+  height: 26px;
+`;
+
 const IconButton = ({
   icon,
-  onClick,
-  size = DEFAULT_SIZE,
   color,
+  onClick,
   className,
+  size = DEFAULT_SIZE,
 }) => (
-  <ItemWrapper onClick={onClick} className={className}>
-    <MaterialIcon icon={icon} size={size} color={color} />
-  </ItemWrapper>
+  <IconWrapper onClick={onClick} className={className}>
+    <IconHeight>
+      <MaterialIcon icon={icon} size={size} color={color} />
+    </IconHeight>
+  </IconWrapper>
 );
 
 export default IconButton;

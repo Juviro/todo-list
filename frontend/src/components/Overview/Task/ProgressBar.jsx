@@ -33,11 +33,14 @@ const ContdownBar = styled.div`
   border: 1px solid #ccc;
 `;
 
-const RemainingTime = styled.div`
+const RemainingTime = styled.div.attrs(props => ({
+  style: {
+    width: `${props.progress}%`,
+    backgroundColor: getColorFromProgress(props.progress),
+  },
+}))`
   height: 100%;
-  width: ${props => props.progress}%;
   max-width: 100%;
-  background-color: ${props => getColorFromProgress(props.progress)};
   border-radius: 5px;
 `;
 

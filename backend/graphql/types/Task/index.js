@@ -2,8 +2,8 @@ export default `
   type Task {
     _id: String!
     description: String!
+    interval: String!
     lastDone: String
-    interval: Int!
   }
 
   type Query {
@@ -13,19 +13,19 @@ export default `
 
   type Mutation {
     createTask(task: CreateTaskInput): Task!
-    updateTask(_id: String!, task: UpdateTaskInput!): Task!
-    deleteTask(_id: String!): Task!
+    updateTask(_id: ID!, task: UpdateTaskInput!): Task!
+    deleteTask(_id: ID!): Task!
   }
 
   input CreateTaskInput {
     description: String!
+    interval: String!
     lastDone: Int
-    interval: Int!
   }
   
   input UpdateTaskInput {
     description: String
+    interval: String
     lastDone: Int
-    interval: Int
   } 
 `;

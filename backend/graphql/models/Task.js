@@ -16,7 +16,7 @@ const TaskSchema = new Schema({
     type: String,
   },
   interval: {
-    type: Schema.Types.Number,
+    type: String,
   },
 });
 

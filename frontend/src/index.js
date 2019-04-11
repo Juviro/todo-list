@@ -10,7 +10,7 @@ import { withClientState } from "apollo-link-state";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
 import "./index.css";
-import App from "./components/App/App";
+import App from "./components/App/App.jsx";
 import * as serviceWorker from "./serviceWorker";
 import { defaults, resolvers } from "./resolvers/";
 

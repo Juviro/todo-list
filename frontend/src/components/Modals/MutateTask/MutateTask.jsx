@@ -9,8 +9,7 @@ import BaseModal from "../Base/Modal.js";
 import ModalHeader from "../Base/ModalHeader";
 import IntervalSelection from "./IntervalSelection";
 
-import { TIME_UNITS } from "../../../constants/global";
-import { getIntervalInMillies } from "../../../utils/time";
+import { getIntervalInMillies, getIntervalInUnits } from "../../../utils/time";
 
 const ContentWrapper = styled.div`
   margin-top: 24px;
@@ -25,14 +24,29 @@ const ButtonContainer = styled.div`
 `;
 
 class CreateTask extends React.Component {
-  state = {
-    taskName: "Wäsche waschen",
-    intervalCount: 2,
-    intervalUnit: TIME_UNITS.WEEK,
-  };
+  constructor(props) {
+    super(props);
+    const task = props.task || {};
+    const { intervalCount, intervalUnit } = getIntervalInUnits(task.interval);
+    this.state = {
+      description: task.description || "",
+      intervalCount,
+      intervalUnit,
+      error: false,
+    };
+  }
 
-  onChangeTaskName = event => {
-    this.setState({ taskName: event.target.value });
+  componentDidUpdate(prevProps) {
+    if (prevProps.task || !this.props.task) return;
+
+    this.setState({
+      description: this.props.task.description,
+      ...getIntervalInUnits(this.props.task.interval),
+    });
+  }
+
+  onChangeDescription = event => {
+    this.setState({ description: event.target.value });
   };
 
   onChangeIntervalCount = event => {
@@ -44,27 +58,40 @@ class CreateTask extends React.Component {
   };
 
   onSubmit = () => {
+    if (!this.state.description) {
+      this.setState({ error: true });
+      return;
+    }
+
     const interval = getIntervalInMillies(
       this.state.intervalCount,
       this.state.intervalUnit
     );
 
     this.props
-      .onCreateTask({
-        variables: { interval, description: this.state.taskName },
+      .onSubmit({
+        variables: {
+          interval,
+          description: this.state.description,
+          _id: this.props._id,
+        },
       })
       .then(this.props.onClose);
   };
 
   render() {
+    console.log("Props", this.props);
     return (
       <BaseModal onBackdropClick={this.props.onClose}>
-        <ModalHeader>Neue Aufgabe hinzufügen</ModalHeader>,
+        <ModalHeader>{this.props.modalTitle}</ModalHeader>
         <ContentWrapper>
           <Input
             placeholder="Was muss erledigt werden?"
-            value={this.state.taskName}
-            onChange={this.onChangeTaskName}
+            value={this.state.description}
+            onChange={this.onChangeDescription}
+            error={this.state.error && !this.state.description}
+            autoFocus
+            required
             fullWidth
           />
           <IntervalSelection
@@ -78,7 +105,7 @@ class CreateTask extends React.Component {
               abbrechen
             </Button>
             <Button color="primary" onClick={this.onSubmit}>
-              hinzufügen
+              {this.props.buttonTitle}
             </Button>
           </ButtonContainer>
         </ContentWrapper>
