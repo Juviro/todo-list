@@ -27,6 +27,7 @@ const ModalWrapper = styled.div`
   animation-duration: 0.3s;
   animation-fill-mode: forwards;
   outline: none;
+  overflow: hidden;
 `;
 
 ModalWrapper.propTypes = {

@@ -13,8 +13,8 @@ export default `
 
   type Mutation {
     createTask(task: CreateTaskInput): Task!
-    updateTask(_id: ID!, task: UpdateTaskInput!): Task!
-    deleteTask(_id: ID!): Task!
+    updateTask(_id: ID!, task: UpdateTaskInput!): Task
+    deleteTask(_id: ID!): Task
   }
 
   input CreateTaskInput {

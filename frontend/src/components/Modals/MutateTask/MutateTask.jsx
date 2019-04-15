@@ -3,24 +3,17 @@ import styled from "styled-components";
 
 import { withTheme } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
-import Button from "@material-ui/core/Button";
 
 import BaseModal from "../Base/Modal.js";
 import ModalHeader from "../Base/ModalHeader";
 import IntervalSelection from "./IntervalSelection";
+import ButtonRow from "./ButtonRow";
 
 import { getIntervalInMillies, getIntervalInUnits } from "../../../utils/time";
 
 const ContentWrapper = styled.div`
   margin-top: 24px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 24px;
-  height: 40px;
+  overflow: hidden;
 `;
 
 class CreateTask extends React.Component {
@@ -46,7 +39,7 @@ class CreateTask extends React.Component {
   }
 
   onChangeDescription = event => {
-    this.setState({ description: event.target.value });
+    this.setState({ description: event.target.value, error: false });
   };
 
   onChangeIntervalCount = event => {
@@ -79,6 +72,12 @@ class CreateTask extends React.Component {
       .then(this.props.onClose);
   };
 
+  onDeleteTask = () => {
+    this.props
+      .onDelete({ variables: { _id: this.props._id } })
+      .then(this.props.onClose);
+  };
+
   render() {
     return (
       <BaseModal onBackdropClick={this.props.onClose}>
@@ -99,14 +98,13 @@ class CreateTask extends React.Component {
             intervalCount={this.state.intervalCount}
             intervalUnit={this.state.intervalUnit}
           />
-          <ButtonContainer>
-            <Button color="secondary" onClick={this.props.onClose}>
-              abbrechen
-            </Button>
-            <Button color="primary" onClick={this.onSubmit}>
-              {this.props.buttonTitle}
-            </Button>
-          </ButtonContainer>
+          <ButtonRow
+            onDelete={this.onDeleteTask}
+            showDelete={!!this.props.onDelete}
+            onClose={this.props.onClose}
+            onSubmit={this.onSubmit}
+            buttonTitle={this.props.buttonTitle}
+          />
         </ContentWrapper>
       </BaseModal>
     );

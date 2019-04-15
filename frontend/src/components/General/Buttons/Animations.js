@@ -1,7 +1,7 @@
 import { css } from "styled-components";
 
 export const ButtonAnimation = css`
-  @media (hover: none) {
+  @media (hover: hover) {
     &:hover {
       background-color: #dedede;
       transition: background-color 0.2s;

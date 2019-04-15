@@ -11,6 +11,8 @@ const TIME_MAPPING = {
   [TIME_UNITS.MONTH]: MONTH_IN_MILLIES,
 };
 
+const DEFAULT_INTERVAL = { intervalUnit: TIME_UNITS.WEEK, intervalCount: 2 };
+
 export const getIntervalInMillies = (intervalCount, intervalUnit) => {
   return String((intervalCount * TIME_MAPPING[intervalUnit]) / 1000);
   // return String(intervalCount * TIME_MAPPING[intervalUnit]);
@@ -26,7 +28,5 @@ for (let intervalCount = 1; intervalCount < 7; intervalCount++) {
 }
 
 export const getIntervalInUnits = interval => {
-  return (
-    intervalMap[interval] || { intervalUnit: TIME_UNITS.WEEK, intervalCount: 2 }
-  );
+  return intervalMap[interval] || DEFAULT_INTERVAL;
 };
