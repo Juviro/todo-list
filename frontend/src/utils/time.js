@@ -12,7 +12,7 @@ const TIME_MAPPING = {
 };
 
 export const getIntervalInMillies = (intervalCount, intervalUnit) => {
-  return String((intervalCount * TIME_MAPPING[intervalUnit]) / 100);
+  return String((intervalCount * TIME_MAPPING[intervalUnit]) / 1000);
   // return String(intervalCount * TIME_MAPPING[intervalUnit]);
 };
 

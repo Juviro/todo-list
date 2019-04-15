@@ -12,38 +12,23 @@ const OverviewWrapper = styled.div`
 `;
 
 class Overview extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasks: [],
-    };
-    setInterval(this.addProgress, 1000);
+  componentDidMount() {
+    setInterval(() => this.forceUpdate(), 1000);
   }
 
-  addProgress = () => {
+  getTasksWithProgress = () => {
     const getProgress = ({ lastDone, interval }) =>
       Math.ceil(((Date.now() - lastDone) / interval) * 100);
 
-    const tasks = this.props.tasks.map(task => ({
+    return this.props.tasks.map(task => ({
       ...task,
       progress: getProgress(task),
     }));
-    this.setState({ tasks });
   };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.tasks.length !== this.state.tasks.length) {
-      this.addProgress();
-    }
-  }
-
   render() {
-    const { onFinishTask } = this.props;
-
-    const sortedTasks = this.state.tasks.sort(
-      (a, b) => a.progress - b.progress
-    );
-
+    const tasks = this.getTasksWithProgress();
+    const sortedTasks = tasks.sort((a, b) => a.progress - b.progress);
     return (
       <OverviewWrapper>
         {sortedTasks.map((task, index) => (
@@ -51,7 +36,7 @@ class Overview extends React.Component {
             {...task}
             index={index}
             key={task._id}
-            onFinishTask={onFinishTask}
+            onFinishTask={this.props.onFinishTask}
           />
         ))}
       </OverviewWrapper>

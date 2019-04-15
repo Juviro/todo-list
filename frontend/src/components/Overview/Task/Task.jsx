@@ -1,8 +1,20 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import ItemActions from "./ItemActionsContainer";
 import ProgressBar from "./ProgressBar";
 import Subtitles from "./Subtitles";
+
+const grow = keyframes`
+  0% {
+    transform:  scale(0.5);
+  }
+  80% {
+    transform:  scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
 
 const TaskWrapper = styled.div`
   flex: 1;
@@ -15,6 +27,8 @@ const TaskWrapper = styled.div`
   border: 2px solid #e7e7e7;
   order: ${({ index }) => index};
   box-shadow: 3px 3px 10px -2px #ddd;
+
+  animation: ${grow} 0.3s linear;
 
   &:nth-last-child(-n + 3) {
     min-width: 40%;
@@ -37,15 +51,7 @@ const TopRowWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Task = ({
-  description,
-  progress,
-  index,
-  onFinishTask,
-  lastDone,
-  interval,
-  _id,
-}) => (
+const Task = ({ description, progress, index, lastDone, interval, _id }) => (
   <TaskWrapper index={index}>
     <TopRowWrapper>
       <TitleWrapper>

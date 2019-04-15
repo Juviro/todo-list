@@ -80,7 +80,6 @@ class CreateTask extends React.Component {
   };
 
   render() {
-    console.log("Props", this.props);
     return (
       <BaseModal onBackdropClick={this.props.onClose}>
         <ModalHeader>{this.props.modalTitle}</ModalHeader>

@@ -23,7 +23,6 @@ export const resolvers = {
           modalPayload: { ...defaults.modal.modalPayload, ...payload },
         },
       };
-      console.log("data", data);
       cache.writeData({ query, data });
       return null;
     },
