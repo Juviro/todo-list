@@ -14,8 +14,10 @@ import App from "./components/App/App.jsx";
 import * as serviceWorker from "./serviceWorker";
 import { defaults, resolvers } from "./resolvers/";
 
+const SERVER_URL = "192.168.178.158";
+
 const httpLink = new HttpLink({
-  uri: "http://localhost:4000/graphql",
+  uri: `http://${SERVER_URL}:4000/graphql`,
 });
 
 const cache = new InMemoryCache();

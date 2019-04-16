@@ -59,7 +59,7 @@ const Task = ({ description, progress, index, lastDone, interval, _id }) => (
       </TitleWrapper>
       <ItemActions taskId={_id} />
     </TopRowWrapper>
-    <Subtitles lastDone={lastDone} interval={interval} />
+    <Subtitles lastDone={Number(lastDone)} interval={Number(interval)} />
     <ProgressBar progress={progress} />
   </TaskWrapper>
 );

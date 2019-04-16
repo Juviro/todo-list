@@ -1,7 +1,7 @@
 import { TIME_UNITS } from "../constants/global";
 
 const HOUR_IN_MILLIES = 60 * 60 * 1000;
-const DAY_IN_MILLIES = 24 * HOUR_IN_MILLIES;
+export const DAY_IN_MILLIES = 24 * HOUR_IN_MILLIES;
 const WEEK_IN_MILLIES = 7 * DAY_IN_MILLIES;
 const MONTH_IN_MILLIES = 30 * DAY_IN_MILLIES;
 
@@ -14,8 +14,8 @@ const TIME_MAPPING = {
 const DEFAULT_INTERVAL = { intervalUnit: TIME_UNITS.WEEK, intervalCount: 2 };
 
 export const getIntervalInMillies = (intervalCount, intervalUnit) => {
-  return String((intervalCount * TIME_MAPPING[intervalUnit]) / 1000);
-  // return String(intervalCount * TIME_MAPPING[intervalUnit]);
+  // return String((intervalCount * TIME_MAPPING[intervalUnit]) / 1000);
+  return String(intervalCount * TIME_MAPPING[intervalUnit]);
 };
 
 const intervalMap = {};

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { DAY_IN_MILLIES } from "../../../utils/time";
 
 const SubtitlesWrapper = styled.div`
   display: inline-block;
@@ -14,6 +15,7 @@ const Subtitle = styled.div`
   font-size: 14px;
   margin-right: 5px
   justify-content: space-between;
+  max-width: 24rem
 `;
 
 const Substring = styled.div`
@@ -26,17 +28,28 @@ const DATE_FORMATTING_OPTIONS = {
   month: "long",
   day: "numeric",
 };
+const DATE_HOUR_FORMATTING_OPTIONS = {
+  ...DATE_FORMATTING_OPTIONS,
+  hour: "numeric",
+  minute: "numeric",
+};
 
-// TODO if interval < 24 h print hours
 const Subtitles = ({ lastDone, interval }) => {
-  const lastDoneString = new Date(Number(lastDone)).toLocaleDateString(
+  const showHours = lastDone + interval < Date.now() + DAY_IN_MILLIES;
+
+  const dateFormattingOptions = showHours
+    ? DATE_HOUR_FORMATTING_OPTIONS
+    : DATE_FORMATTING_OPTIONS;
+
+  const lastDoneString = new Date(lastDone).toLocaleDateString(
     DATE_LOCATION,
-    DATE_FORMATTING_OPTIONS
+    dateFormattingOptions
   );
 
-  const endDateString = new Date(
-    Number(lastDone) + Number(interval)
-  ).toLocaleDateString(DATE_LOCATION, DATE_FORMATTING_OPTIONS);
+  const endDateString = new Date(lastDone + interval).toLocaleDateString(
+    DATE_LOCATION,
+    dateFormattingOptions
+  );
 
   return (
     <SubtitlesWrapper>
