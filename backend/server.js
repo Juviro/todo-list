@@ -3,10 +3,7 @@ import mongoose from "mongoose";
 
 import schema from "./graphql";
 import { models } from "./graphql/models";
-
-// TODO move to config
-const dbPassword = "HD35twuZuQiAm6y";
-const db = `mongodb+srv://Juviro:${dbPassword}@cluster0-lybnc.mongodb.net/task?retryWrites=true`;
+import dbConfig from "./graphql/dbconfig";
 
 const options = {
   port: process.env.PORT || "4000",
@@ -21,7 +18,7 @@ const context = {
 };
 
 mongoose
-  .connect(db, {
+  .connect(dbConfig.uri, {
     useCreateIndex: true,
     useNewUrlParser: true,
   })

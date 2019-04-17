@@ -13,8 +13,7 @@ import "./index.css";
 import App from "./components/App/App.jsx";
 import * as serviceWorker from "./serviceWorker";
 import { defaults, resolvers } from "./resolvers/";
-
-const SERVER_URL = "192.168.178.158";
+import { SERVER_URL } from "./constants/api";
 
 const httpLink = new HttpLink({
   uri: `http://${SERVER_URL}:4000/graphql`,

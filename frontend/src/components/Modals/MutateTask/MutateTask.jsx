@@ -88,7 +88,7 @@ class CreateTask extends React.Component {
             value={this.state.description}
             onChange={this.onChangeDescription}
             error={this.state.error && !this.state.description}
-            autoFocus
+            autoFocus={!this.props.onDelete}
             required
             fullWidth
           />

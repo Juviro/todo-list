@@ -4,7 +4,8 @@
   "author": "juviro <hauketw@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"cd ./backend && yarn start\" \"cd ./frontend && yarn start\""
+    "start": "NODE_ENV=dev concurrently \"cd ./backend && yarn start\" \"cd ./frontend && yarn start\"",
+    "start-prod": "NODE_ENV=prod concurrently \"cd ./backend && yarn start\" \"cd ./frontend && yarn start\""
   },
   "dependencies": {
     "is-builtin-module": "^3.0.0"
