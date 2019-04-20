@@ -4,4 +4,6 @@ export default styled.span`
   width: 100%;
   font-weight: bold;
   font-size: 24px;
+  display: flex;
+  justify-content: center;
 `;

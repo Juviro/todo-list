@@ -10,7 +10,7 @@ const ButtonContainer = styled.div`
   width: 200%;
   transform: translateX(${({ showConfirm }) => (showConfirm ? "-50%" : "0%")});
   margin-top: 24px;
-  height: 40px;
+  height: 45px;
   transition-property: transform;
   transition-duration: 0.5s;
 `;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import FinishTask from "./FinishTask/FinishTask";
+import FinishTask from "./FinishTask/FinishTaskContainer";
 import CreateTask from "./MutateTask/CreateTaskContainer";
 import UpdateTask from "./MutateTask/UpdateTaskContainer";
 

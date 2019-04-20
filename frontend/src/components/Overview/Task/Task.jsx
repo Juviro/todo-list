@@ -28,7 +28,7 @@ const TaskWrapper = styled.div`
   order: ${({ index }) => index};
   box-shadow: 3px 3px 10px -2px #ddd;
 
-  // animation: ${grow} 0.3s linear;
+  animation: ${grow} 0.3s linear;
 
   &:nth-last-child(-n + 3) {
     min-width: 40%;

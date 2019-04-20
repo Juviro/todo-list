@@ -1,7 +1,20 @@
 import React from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 import ModalWrapper from "./ModalWrapper";
 import ModalBackdrop from "./ModalBackdrop";
+
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+const LoadingSpinnerWrapper = styled.div`
+  display: flex;
+  width: 100%
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  min-width: 150px;
+`;
 
 const ModalSizes = {
   auto: "auto",
@@ -58,7 +71,13 @@ class Modal extends React.Component {
             this.props.onReady();
           }}
         >
-          {this.props.children}
+          {this.props.loading ? (
+            <LoadingSpinnerWrapper>
+              <CircularProgress />
+            </LoadingSpinnerWrapper>
+          ) : (
+            this.props.children
+          )}
         </ModalWrapper>
       </ModalBackdrop>
     );
