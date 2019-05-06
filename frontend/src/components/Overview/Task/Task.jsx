@@ -22,6 +22,7 @@ const TaskWrapper = styled.div`
   display: flex;
   padding: 24px;
   flex-wrap: wrap;
+  min-width: 250px;
   border-radius: 5px;
   background-color: #fff;
   border: 2px solid #e7e7e7;

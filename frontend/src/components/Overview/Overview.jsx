@@ -29,12 +29,14 @@ class Overview extends React.Component {
   sortTasks(tasks) {
     const getNextDueDate = ({ interval, lastDone }) =>
       Number(interval) + Number(lastDone);
+
     return tasks.sort((a, b) => getNextDueDate(b) - getNextDueDate(a));
   }
 
   render() {
     const tasks = this.getTasksWithProgress();
     const sortedTasks = this.sortTasks(tasks);
+
     return (
       <OverviewWrapper>
         {sortedTasks.map((task, index) => (

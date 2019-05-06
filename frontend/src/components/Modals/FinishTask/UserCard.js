@@ -14,6 +14,8 @@ const PROFILE_IMAGES = {
 const UserCard = styled.div`
   height: 35vw;
   width: 30vw;
+  max-height: 70vh;
+  max-width: 50vh;
   margin: 1vw;
   display: flex;
   flex-wrap: wrap;
@@ -51,12 +53,15 @@ const UserPortrait = styled.div`
 `;
 
 const UserName = styled.span`
-  height: 10%;
+  font-size: calc((4vw + 4vh) / 2);
+`;
+
+const NameWrapper = styled.div`
   display: flex;
-  width: 70%;
   justify-content: center;
   align-items: center;
-  font-size: 4vw;
+  width: 100%;
+  height: 15%;
 `;
 
 export default ({ name }) => {
@@ -65,7 +70,9 @@ export default ({ name }) => {
       <PortraitWrapper>
         <UserPortrait image={PROFILE_IMAGES[name]} />
       </PortraitWrapper>
-      <UserName>{name}</UserName>
+      <NameWrapper>
+        <UserName>{name}</UserName>
+      </NameWrapper>
     </UserCard>
   );
 };

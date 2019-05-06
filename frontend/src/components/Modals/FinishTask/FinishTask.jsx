@@ -25,8 +25,8 @@ class FinishTask extends React.Component {
     return (
       <BaseModal
         onBackdropClick={this.props.onClose}
-        size="auto"
         loading={this.props.users.loading}
+        size="auto"
       >
         <ModalHeader>{taskName} abschließen</ModalHeader>
         <ContentWrapper>

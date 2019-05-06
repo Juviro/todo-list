@@ -16,7 +16,7 @@ import { defaults, resolvers } from "./resolvers/";
 import { SERVER_URL } from "./constants/api";
 
 const httpLink = new HttpLink({
-  uri: `http://${SERVER_URL}:4000/graphql`,
+  uri: SERVER_URL,
 });
 
 const cache = new InMemoryCache();

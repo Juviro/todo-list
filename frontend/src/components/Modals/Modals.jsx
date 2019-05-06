@@ -17,12 +17,6 @@ const getCurrentModal = currentModal => {
   }
 };
 
-/*
- * TODO: Add a prop that's true if the user has already entered data
- * to ensure no data is accidently lost when clicking the backdrop.
- * Maybe add a confirmation dialog if the user really wants to abort.
- */
-
 export default ({ onCloseModal, currentModal, modalPayload }) => {
   const CurrentModal = getCurrentModal(currentModal);
   if (!CurrentModal) return null;
