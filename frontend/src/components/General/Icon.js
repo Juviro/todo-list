@@ -15,7 +15,7 @@ const IconWrapper = styled.div`
 `;
 
 const IconHeight = styled.div`
-  height: 26px;
+  height: 32px;
 `;
 
 const IconButton = ({
