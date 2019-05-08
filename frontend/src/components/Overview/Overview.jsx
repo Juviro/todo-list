@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import Task from "./Task/Task";
 
+const UPDATE_INTERVAL = 10000;
+
 const OverviewWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -13,7 +15,7 @@ const OverviewWrapper = styled.div`
 
 class Overview extends React.Component {
   componentDidMount() {
-    setInterval(() => this.forceUpdate(), 1000);
+    setInterval(() => this.forceUpdate(), UPDATE_INTERVAL);
   }
 
   getTasksWithProgress = () => {
@@ -34,6 +36,7 @@ class Overview extends React.Component {
   }
 
   render() {
+    console.log("tasks", this.props.tasks);
     const tasks = this.getTasksWithProgress();
     const sortedTasks = this.sortTasks(tasks);
 

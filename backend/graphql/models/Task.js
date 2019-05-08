@@ -18,6 +18,15 @@ const TaskSchema = new Schema({
   interval: {
     type: String,
   },
+  completed: [
+    {
+      timestamp: String,
+      user: {
+        type: ObjectID,
+        ref: "User",
+      },
+    },
+  ],
 });
 
 export default mongoose.model("Task", TaskSchema);

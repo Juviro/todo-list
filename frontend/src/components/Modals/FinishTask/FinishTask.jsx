@@ -12,9 +12,9 @@ const ContentWrapper = styled.div`
 `;
 
 class FinishTask extends React.Component {
-  onFinish = () => {
+  onFinish = user => {
     this.props
-      .onFinish({ variables: { _id: this.props._id } })
+      .onFinish({ variables: { _id: this.props._id, user } })
       .then(this.props.onClose);
   };
 
@@ -28,10 +28,16 @@ class FinishTask extends React.Component {
         loading={this.props.users.loading}
         size="auto"
       >
-        <ModalHeader>{taskName} abschließen</ModalHeader>
+        <ModalHeader>
+          Welches fleißige Bienchen hat "{taskName}" erledigt?
+        </ModalHeader>
         <ContentWrapper>
           {users.map(user => (
-            <UserCard key={user.name} {...user} />
+            <UserCard
+              {...user}
+              key={user.name}
+              onClick={() => this.onFinish(user._id)}
+            />
           ))}
         </ContentWrapper>
       </BaseModal>

@@ -4,6 +4,12 @@ export default `
     description: String!
     interval: String!
     lastDone: String
+    completed: [Completed!]!
+  }
+  
+  type Completed {
+    timestamp: String
+    user: ID
   }
 
   type Query {
@@ -11,9 +17,15 @@ export default `
     tasks: [Task!]!
   }
 
+  type CompleteTaskReturn {
+    _id: String!
+    user: String!
+  }
+
   type Mutation {
     createTask(task: CreateTaskInput): Task!
     updateTask(_id: ID!, task: UpdateTaskInput!): Task
+    completeTask(_id: ID!, user: ID!): CompleteTaskReturn
     deleteTask(_id: ID!): Task
   }
 

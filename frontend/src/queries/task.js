@@ -6,6 +6,10 @@ export const GET_TASK = gql`
       lastDone
       interval
       description
+      completed {
+        user
+        timestamp
+      }
     }
   }
 `;
@@ -16,6 +20,10 @@ export const GET_TASKS = gql`
       lastDone
       interval
       description
+      completed {
+        user
+        timestamp
+      }
     }
   }
 `;
@@ -27,6 +35,10 @@ export const CREATE_TASK = gql`
       interval
       lastDone
       _id
+      completed {
+        user
+        timestamp
+      }
     }
   }
 `;
@@ -41,6 +53,19 @@ export const UPDATE_TASK = gql`
       interval
       lastDone
       _id
+      completed {
+        user
+        timestamp
+      }
+    }
+  }
+`;
+
+export const COMPLETE_TASK = gql`
+  mutation completeTask($_id: ID!, $user: ID!) {
+    completeTask(_id: $_id, user: $user) {
+      _id
+      user
     }
   }
 `;

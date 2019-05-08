@@ -12,7 +12,7 @@ const PROFILE_IMAGES = {
 };
 
 const UserCard = styled.div`
-  height: 35vw;
+  // height: 35vw;
   width: 30vw;
   max-height: 70vh;
   max-width: 50vh;
@@ -61,15 +61,16 @@ const NameWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 30px;
   height: 15%;
 `;
 
-export default ({ name }) => {
+export default ({ name, onClick }) => {
   return (
-    <UserCard>
-      <PortraitWrapper>
+    <UserCard onClick={onClick}>
+      {/* <PortraitWrapper>
         <UserPortrait image={PROFILE_IMAGES[name]} />
-      </PortraitWrapper>
+      </PortraitWrapper> */}
       <NameWrapper>
         <UserName>{name}</UserName>
       </NameWrapper>
