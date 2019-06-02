@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import moment from "moment";
 
 const RESELECT_FIRST_ITEM_TIMEOUT = 3000;
@@ -10,8 +10,21 @@ const getOpacityFromIndex = index => {
   return 1 - ((index + 1) / MAX_DISPLAYED_ITEMS) * 0.6;
 };
 
+const grow = keyframes`
+  0% {
+    transform:  scale(0.5);
+  }
+  50% {
+    transform:  scale(0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
 const TimelineWrapper = styled.div`
   width: 100%;
+  height: 70px;
   display: flex;
 `;
 
@@ -23,7 +36,7 @@ const ItemWrapper = styled.div`
 `;
 
 const UserSquareWrapper = styled.div`
-  width: 36px;
+  width: 100%;
   height: 36px;
   display: flex;
   justify-content: center;
@@ -61,16 +74,12 @@ const LastDoneWrapper = styled.div`
   display: flex;
 `;
 
-const LastDone = styled.span.attrs(({ isVisible }) => ({
-  style: {
-    opacity: isVisible ? 1 : 0,
-  },
-}))`
+const LastDone = styled.div`
   font-size: 12px;
+  min-width: 70px;
   font-weight: 600;
   text-align: center;
-  min-width: 70px;
-  transition: all 0.2s ease-in;
+  animation: ${grow} 0.1s linear;
 `;
 
 // TODO: split up into smaller chunks or move styled components to separate file
@@ -136,9 +145,9 @@ class Timeline extends React.Component {
                   </UserSquare>
                 </UserSquareWrapper>
                 <LastDoneWrapper>
-                  <LastDone isVisible={isSelected}>
-                    {moment(Number(timestamp)).fromNow()}
-                  </LastDone>
+                  {isSelected ? (
+                    <LastDone>{moment(Number(timestamp)).fromNow()}</LastDone>
+                  ) : null}
                 </LastDoneWrapper>
               </ItemWrapper>
             );
