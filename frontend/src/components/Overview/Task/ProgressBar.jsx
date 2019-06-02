@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const UPDATE_INTERVAL = 1000;
+const UPDATE_INTERVAL = 10000;
 const FULL_PROGRESS = 100;
 const MAX_PROGRESS = 200;
 const HUE_RANGE = 120;

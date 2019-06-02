@@ -26,7 +26,7 @@ export default {
     },
     updateTask: async (parent, { _id, task }, context, info) => {
       return new Promise((resolve, reject) => {
-        Task.findOneAndUpdate(_id, { $set: { ...task } }, { new: true })
+        Task.findByIdAndUpdate(_id, { $set: { ...task } }, { new: true })
           .populate("completed.user")
           .exec((err, res) => {
             err ? reject(err) : resolve(res);
@@ -36,7 +36,7 @@ export default {
     completeTask: async (parent, { _id, user }, context, info) => {
       const timestamp = String(Date.now());
       return new Promise((resolve, reject) => {
-        Task.findOneAndUpdate(
+        Task.findByIdAndUpdate(
           _id,
           {
             $push: {
