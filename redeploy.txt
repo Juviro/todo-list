@@ -1,0 +1,1 @@
+alias redeploy="(rm -rf /var/www/virtual/hauke/html/* && cd /home/hauke/packages/todo-list/frontend && yarn build && mv /home/hauke/packages/todo-list/frontend/build/* /var/www/virtual/hauke/html/)"
