@@ -1,3 +1,4 @@
+import "@babel/polyfill";
 import { GraphQLServer, PubSub } from "graphql-yoga";
 import mongoose from "mongoose";
 
@@ -7,9 +8,9 @@ import dbConfig from "./graphql/dbconfig";
 
 const options = {
   port: process.env.PORT || "4000",
-  endpoint: "/graphql",
-  subscriptions: "/subscriptions",
-  playground: "/playground",
+  endpoint: "/api/graphql",
+  subscriptions: "/api/subscriptions",
+  playground: "/api/playground",
 };
 
 const context = {
