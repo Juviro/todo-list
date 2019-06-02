@@ -3,7 +3,6 @@ import styled, { keyframes } from "styled-components";
 import ItemActions from "./ItemActionsContainer";
 import ProgressBar from "./ProgressBar";
 import Timeline from "./Timeline";
-// import Subtitles from "./Subtitles";
 import Title from "./Title";
 
 const grow = keyframes`
@@ -50,7 +49,6 @@ const Task = ({ description, index, lastDone, interval, _id, completed }) => (
       <ItemActions taskId={_id} />
     </TopRowWrapper>
     <Timeline completed={completed} />
-    {/* <Subtitles lastDone={Number(lastDone)} interval={Number(interval)} /> */}
     <ProgressBar lastDone={lastDone} interval={interval} />
   </TaskWrapper>
 );

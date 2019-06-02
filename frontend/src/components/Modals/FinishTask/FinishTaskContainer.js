@@ -21,6 +21,7 @@ export default compose(
           if (task._id === completeTask._id) {
             return {
               ...task,
+              lastDone: Date.now().toString(),
               completed: [...task.completed, newCompleted],
             };
           }
