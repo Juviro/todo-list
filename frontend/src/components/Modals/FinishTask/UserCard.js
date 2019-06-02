@@ -1,30 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-import Portrait1 from "../../../assets/portraits/torben.jpg";
-import Portrait2 from "../../../assets/portraits/antje.jpg";
-import Portrait3 from "../../../assets/portraits/opa.jpg";
-
-const PROFILE_IMAGES = {
-  Sarah: Portrait2,
-  Hauke: Portrait1,
-  Ben: Portrait3,
-};
-
-const UserCard = styled.div`
-  // height: 35vw;
-  width: 30vw;
-  max-height: 70vh;
-  max-width: 50vh;
+const UserCard = styled.div.attrs(props => ({
+  style: {
+    backgroundColor: props.color,
+  },
+}))`
+  width: 30%;
   margin: 1vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  border-radius: 15px;
-  box-shadow: 0px 0px 9px 2px #afafaf;
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   user-select: none;
+  color: white;
+  border-radius: 0;
+  padding: 5px 20px;
 
   @media (hover: hover) {
     &:hover {
@@ -33,23 +26,15 @@ const UserCard = styled.div`
     }
   }
 
+  @media (max-width: 500px) {
+    width: 100%;
+    margin-top: 16px;
+  }
+
   &:active {
     transform: scale(0.96);
     transition: transform 0.2s;
   }
-`;
-
-const PortraitWrapper = styled.div`
-  height: 70%;
-  width: 70%;
-  border-radius: 50%;
-  overflow: hidden;
-`;
-
-const UserPortrait = styled.div`
-  height: 100%;
-  background: url(${({ image }) => image}) no-repeat 50% 50%;
-  background-size: cover;
 `;
 
 const UserName = styled.span`
@@ -61,16 +46,12 @@ const NameWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 30px;
   height: 15%;
 `;
 
-export default ({ name, onClick }) => {
+export default ({ primaryColor, name, onClick }) => {
   return (
-    <UserCard onClick={onClick}>
-      {/* <PortraitWrapper>
-        <UserPortrait image={PROFILE_IMAGES[name]} />
-      </PortraitWrapper> */}
+    <UserCard onClick={onClick} color={primaryColor}>
       <NameWrapper>
         <UserName>{name}</UserName>
       </NameWrapper>

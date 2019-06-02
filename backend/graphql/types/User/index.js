@@ -2,6 +2,7 @@ export default `
   type User {
     _id: String!
     name: String!
+    primaryColor: String!
   }
 
   type Query {
@@ -15,5 +16,6 @@ export default `
 
   input CreateUserInput {
     name: String!
+    primaryColor: String!
   }
 `;

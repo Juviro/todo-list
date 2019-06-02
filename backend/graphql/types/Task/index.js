@@ -8,8 +8,13 @@ export default `
   }
   
   type Completed {
-    timestamp: String
-    user: ID
+    timestamp: String!
+    user: User!
+  }
+
+  type User {
+    _id: ID!
+    name: String!
   }
 
   type Query {
@@ -19,7 +24,7 @@ export default `
 
   type CompleteTaskReturn {
     _id: String!
-    user: String!
+    user: User
   }
 
   type Mutation {

@@ -5,6 +5,7 @@ export const GET_USERS = gql`
     users {
       _id
       name
+      primaryColor
     }
   }
 `;

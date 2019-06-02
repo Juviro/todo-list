@@ -2,7 +2,9 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import ItemActions from "./ItemActionsContainer";
 import ProgressBar from "./ProgressBar";
-import Subtitles from "./Subtitles";
+import Timeline from "./Timeline";
+// import Subtitles from "./Subtitles";
+import Title from "./Title";
 
 const grow = keyframes`
   0% {
@@ -17,34 +19,23 @@ const grow = keyframes`
 `;
 
 const TaskWrapper = styled.div`
-  flex: 1;
   margin: 10px;
   display: flex;
-  padding: 24px;
+  padding: 16px;
   flex-wrap: wrap;
-  min-width: 250px;
   border-radius: 5px;
   background-color: #fff;
+  width: calc(50% - 56px);
   border: 2px solid #e7e7e7;
-  order: ${({ index }) => index};
   box-shadow: 3px 3px 10px -2px #ddd;
 
   animation: ${grow} 0.3s linear;
 
-  &:nth-last-child(-n + 3) {
-    min-width: 40%;
+  @media (max-width: 700px) {
+    width: calc(100% - 56px);
   }
 `;
 
-const TitleWrapper = styled.div`
-  width: 150px;
-  overflow-x: hidden;
-`;
-
-const Title = styled.div`
-  font-size: 24px;
-  margin: 0 0 12px 0;
-`;
 const TopRowWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -52,16 +43,15 @@ const TopRowWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Task = ({ description, progress, index, lastDone, interval, _id }) => (
+const Task = ({ description, index, lastDone, interval, _id, completed }) => (
   <TaskWrapper index={index}>
     <TopRowWrapper>
-      <TitleWrapper>
-        <Title>{description}</Title>
-      </TitleWrapper>
+      <Title description={description} />
       <ItemActions taskId={_id} />
     </TopRowWrapper>
-    <Subtitles lastDone={Number(lastDone)} interval={Number(interval)} />
-    <ProgressBar progress={progress} />
+    <Timeline completed={completed} />
+    {/* <Subtitles lastDone={Number(lastDone)} interval={Number(interval)} /> */}
+    <ProgressBar lastDone={lastDone} interval={interval} />
   </TaskWrapper>
 );
 

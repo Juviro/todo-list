@@ -1,29 +1,30 @@
 import gql from "graphql-tag";
 
-export const GET_TASK = gql`
-  query getTask($_id: ID!) {
-    task(_id: $_id) {
+const TASK_FIELDS = `
+      _id
       lastDone
       interval
       description
       completed {
-        user
+        user {
+          name
+          primaryColor
+        }
         timestamp
       }
+`;
+
+export const GET_TASK = gql`
+  query getTask($_id: ID!) {
+    task(_id: $_id) {
+      ${TASK_FIELDS}
     }
   }
 `;
 export const GET_TASKS = gql`
   query getTasks {
     tasks {
-      _id
-      lastDone
-      interval
-      description
-      completed {
-        user
-        timestamp
-      }
+      ${TASK_FIELDS}
     }
   }
 `;
@@ -31,14 +32,7 @@ export const GET_TASKS = gql`
 export const CREATE_TASK = gql`
   mutation createTask($description: String!, $interval: String!) {
     createTask(task: { description: $description, interval: $interval }) {
-      description
-      interval
-      lastDone
-      _id
-      completed {
-        user
-        timestamp
-      }
+      ${TASK_FIELDS}
     }
   }
 `;
@@ -49,14 +43,7 @@ export const UPDATE_TASK = gql`
       _id: $_id
       task: { description: $description, interval: $interval }
     ) {
-      description
-      interval
-      lastDone
-      _id
-      completed {
-        user
-        timestamp
-      }
+      ${TASK_FIELDS}
     }
   }
 `;
@@ -65,7 +52,10 @@ export const COMPLETE_TASK = gql`
   mutation completeTask($_id: ID!, $user: ID!) {
     completeTask(_id: $_id, user: $user) {
       _id
-      user
+      user {
+        name
+        primaryColor
+      }
     }
   }
 `;

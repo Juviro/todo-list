@@ -1,5 +1,7 @@
 import "babel-polyfill";
 import React from "react";
+import moment from "moment";
+import "moment/locale/de";
 import ReactDOM from "react-dom";
 
 import { ApolloLink } from "apollo-link";
@@ -26,6 +28,8 @@ const client = new ApolloClient({
   link: ApolloLink.from([stateLink, httpLink]),
   cache,
 });
+
+moment.locale("de");
 
 ReactDOM.render(
   <ApolloProvider client={client}>

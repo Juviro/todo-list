@@ -20,10 +20,11 @@ const TaskSchema = new Schema({
   },
   completed: [
     {
-      timestamp: String,
+      timestamp: { type: String, required: true },
       user: {
         type: ObjectID,
         ref: "User",
+        required: true,
       },
     },
   ],

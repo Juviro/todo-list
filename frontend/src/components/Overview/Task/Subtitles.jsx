@@ -5,12 +5,10 @@ import { DAY_IN_MILLIES } from "../../../utils/time";
 const SubtitlesWrapper = styled.div`
   display: inline-block;
   align-items: center;
-  width: 100%;
 `;
 
 const Subtitle = styled.div`
   color: #888;
-  width: 100%;
   display: flex;
   font-size: 14px;
   margin-right: 5px
@@ -19,6 +17,7 @@ const Subtitle = styled.div`
 `;
 
 const Substring = styled.div`
+  padding-right: 10px;
   ${props => (props.bold ? "font-weight: bold;" : "")}
 `;
 

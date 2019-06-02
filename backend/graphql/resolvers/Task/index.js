@@ -9,7 +9,7 @@ export default {
     },
     tasks: async (parent, args, context, info) => {
       return await Task.find({})
-        .populate()
+        .populate("completed.user")
         .exec();
     },
   },
@@ -45,10 +45,19 @@ export default {
             $set: { lastDone: timestamp },
           },
           { new: true }
-        ).exec((err, res) => {
-          console.log("res", { _id: res._id, user });
-          err ? reject(err) : resolve({ _id: res._id, user });
-        });
+        )
+          .populate("completed.user")
+          .exec((err, res) => {
+            // TODO find a more elegant solution for this
+            const populatedUser = res.completed[res.completed.length - 1].user;
+
+            err
+              ? reject(err)
+              : resolve({
+                  _id: res._id,
+                  user: populatedUser,
+                });
+          });
       });
     },
     deleteTask: async (parent, { _id }, context, info) => {
