@@ -19,7 +19,11 @@
     "react-apollo": "^2.5.4",
     "react-dom": "^16.8.5",
     "react-scripts": "2.1.8",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.1",
+    "eslint-plugin-react": "^7.11"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,10 +41,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "6.1.1",
-    "eslint-plugin-react": "^7.11",
     "prop-types": "^15.7.2"
   }
 }
