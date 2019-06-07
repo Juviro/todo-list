@@ -9,7 +9,6 @@
     "apollo-link-state": "^0.4.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.5",
     "babel-polyfill": "^6.26.0",
     "eslint-loader": "^2.1.2",
     "graphql": "^14.2.1",
