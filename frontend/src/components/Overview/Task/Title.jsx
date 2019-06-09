@@ -9,6 +9,8 @@ const TitleWrapper = styled.div`
 const TitleComponent = styled.div`
   font-size: 24px;
   margin: 0 0 12px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Title = ({ description }) => {
