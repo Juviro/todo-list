@@ -2,13 +2,11 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import moment from "moment";
 
+import UserSquare from "../Timeline/UserSquare.jsx";
+
 const RESELECT_FIRST_ITEM_TIMEOUT = 3000;
 const UPDATE_INTERVAL = 10000;
 const MAX_DISPLAYED_ITEMS = 8;
-
-const getOpacityFromIndex = index => {
-  return 1 - ((index + 1) / MAX_DISPLAYED_ITEMS) * 0.6;
-};
 
 const grow = keyframes`
   0% {
@@ -41,32 +39,6 @@ const UserSquareWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const UserSquare = styled.div.attrs(({ color, index }) => ({
-  style: {
-    backgroundColor: color,
-    opacity: getOpacityFromIndex(index),
-  },
-}))`
-  color: white;
-  display: flex;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.1s ease-out;
-  width: ${({ isSelected }) => (isSelected ? 38 : 32)}px;
-  height: ${({ isSelected }) => (isSelected ? 38 : 32)}px;
-  font-size: ${({ isSelected }) => (isSelected ? 26 : 24)}px;
-
-  @media (max-width: 500px) {
-    width: 28px;
-    height: 28px;
-    font-size: 20px;
-    width: ${({ isSelected }) => (isSelected ? 34 : 28)}px;
-    height: ${({ isSelected }) => (isSelected ? 34 : 28)}px;
-    font-size: ${({ isSelected }) => (isSelected ? 22 : 20)}px;
-  }
 `;
 
 const LastDoneWrapper = styled.div`
@@ -136,13 +108,13 @@ class Timeline extends React.Component {
               <ItemWrapper key={timestamp}>
                 <UserSquareWrapper>
                   <UserSquare
-                    onClick={() => this.onSelectCompletion(timestamp)}
-                    color={primaryColor}
+                    name={name}
                     index={index}
+                    color={primaryColor}
                     isSelected={isSelected}
-                  >
-                    {name.slice(0, 1)}
-                  </UserSquare>
+                    maxDisplayedItems={MAX_DISPLAYED_ITEMS}
+                    onClick={() => this.onSelectCompletion(timestamp)}
+                  />
                 </UserSquareWrapper>
                 <LastDoneWrapper>
                   {isSelected ? (

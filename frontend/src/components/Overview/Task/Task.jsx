@@ -2,7 +2,8 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import ItemActions from "./ItemActionsContainer";
 import ProgressBar from "./ProgressBar";
-import Timeline from "./Timeline";
+import Timeline from "../Timeline/Timeline";
+import DueDate from "./DueDate";
 import Title from "./Title";
 
 const grow = keyframes`
@@ -42,10 +43,18 @@ const TopRowWrapper = styled.div`
   justify-content: space-between;
 `;
 
+const InfoWrapper = styled.div`
+  display: flex;
+  align-items: baseline;
+`;
+
 const Task = ({ description, index, lastDone, interval, _id, completed }) => (
   <TaskWrapper index={index}>
     <TopRowWrapper>
-      <Title description={description} />
+      <InfoWrapper>
+        <Title description={description} />
+        <DueDate lastDone={lastDone} interval={interval} />
+      </InfoWrapper>
       <ItemActions taskId={_id} />
     </TopRowWrapper>
     <Timeline completed={completed} />
