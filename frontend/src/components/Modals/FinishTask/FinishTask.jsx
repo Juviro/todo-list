@@ -30,7 +30,7 @@ class FinishTask extends React.Component {
   };
 
   startCompletedGimmick = () => {
-    if (Math.random() > 1.2) return;
+    if (Math.random() > 0.2) return;
     this.props.startCompletedGimmick();
   };
 
