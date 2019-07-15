@@ -89,7 +89,7 @@ const screenOptions = [
   },
   {
     image: PikachuImage,
-    text: "Pika-tastisch",
+    text: "Pika-tastisch!",
   },
   {
     image: TaylorImage,
