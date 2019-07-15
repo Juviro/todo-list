@@ -85,35 +85,31 @@ const StyledText = styled.span`
 const screenOptions = [
   {
     image: DobbyImage,
-    text: "Dobby ist stolz auf dich!",
+    text: "Dobby wäre stolz auf dich. RIP",
   },
   {
     image: PikachuImage,
-    text: "Pikachu ist begeistert von dir!",
+    text: "Pika-tastisch",
   },
   {
     image: TaylorImage,
-    text: "Taylor findet das super!",
+    text: "This is why we DO have nice things!",
   },
   {
     image: PeterImage,
-    text: "Peter freut sich über deine Hilfe!",
+    text: "Yay!",
   },
   {
     image: PropperImage,
-    text: "So sauber wie bei Meister Propper!",
+    text: "Mr clean is proud!",
   },
   {
     image: TrumpImage,
-    text: "Der orangene Clown ist begeistert!",
+    text: "The orange clown is delighted!",
   },
   {
     image: MarioImage,
-    text: "Jetzt nur noch schnell die Prinzessin retten!",
-  },
-  {
-    image: MarioImage,
-    text: "Jetzt nur noch schnell die Prinzessin retten!",
+    text: "Yippie!",
   },
   {
     image: BoratImage,
@@ -121,7 +117,7 @@ const screenOptions = [
   },
   {
     image: OlafImage,
-    text: "Danke!",
+    text: "Awesome!",
   },
 ];
 
