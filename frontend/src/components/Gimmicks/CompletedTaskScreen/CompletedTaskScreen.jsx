@@ -130,10 +130,6 @@ class CompletedTasksScreen extends React.Component {
     ...this.getRandomOption(),
   };
 
-  should() {
-    return false;
-  }
-
   componentDidMount() {
     fireworks.init(SCREEN_WRAPPER_ID, {});
     fireworks.start();
@@ -142,6 +138,10 @@ class CompletedTasksScreen extends React.Component {
       this.endAnimation,
       UNMOUNT_TIME + DISPLAY_TIME
     );
+  }
+
+  componentWillUnmount() {
+    this.endAnimation();
   }
 
   onBeforeUnmount = () => {
@@ -154,6 +154,7 @@ class CompletedTasksScreen extends React.Component {
   }
 
   endAnimation = () => {
+    fireworks.stop();
     clearTimeout(this.unmountTimeoutId);
     clearTimeout(this.endTimeoutId);
     this.props.onFinishCompletedAnimation();
