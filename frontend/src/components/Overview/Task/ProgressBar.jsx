@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-const UPDATE_INTERVAL = 10000;
 const FULL_PROGRESS = 100;
 const MAX_PROGRESS = 200;
 const HUE_RANGE = 120;
@@ -48,10 +47,6 @@ const RemainingTime = styled.div.attrs(props => ({
 `;
 
 class ProgressBar extends React.Component {
-  componentDidMount() {
-    setInterval(() => this.forceUpdate(), UPDATE_INTERVAL);
-  }
-
   render() {
     const { lastDone, interval } = this.props;
     const progress = Math.ceil(((Date.now() - lastDone) / interval) * 100);

@@ -6,7 +6,7 @@ const UserCard = styled.div.attrs(props => ({
     backgroundColor: props.color,
   },
 }))`
-  width: 30%;
+  flex: 1;
   margin: 1vw;
   display: flex;
   flex-wrap: wrap;

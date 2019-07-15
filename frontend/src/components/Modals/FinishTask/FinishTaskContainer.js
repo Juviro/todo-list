@@ -3,6 +3,7 @@ import { graphql, compose } from "react-apollo";
 import FinishTask from "./FinishTask";
 import { COMPLETE_TASK, GET_TASKS, GET_TASK } from "../../../queries/task";
 import { GET_USERS } from "../../../queries/user";
+import { CHANGE_IS_COMPLETED_ANIMATION_ACTIVE } from "../../../queries/gimmicks";
 
 export default compose(
   graphql(COMPLETE_TASK, {
@@ -29,6 +30,14 @@ export default compose(
         });
 
         proxy.writeQuery({ query: GET_TASKS, data });
+      },
+    },
+  }),
+  graphql(CHANGE_IS_COMPLETED_ANIMATION_ACTIVE, {
+    name: "startCompletedGimmick",
+    options: {
+      variables: {
+        isActive: true,
       },
     },
   }),

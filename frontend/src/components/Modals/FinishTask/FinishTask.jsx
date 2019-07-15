@@ -25,7 +25,13 @@ class FinishTask extends React.Component {
     this.setState({ isLoading: true });
     this.props
       .onFinish({ variables: { _id: this.props._id, user } })
+      .then(this.startCompletedGimmick)
       .then(this.props.onClose);
+  };
+
+  startCompletedGimmick = () => {
+    if (Math.random() > 1.2) return;
+    this.props.startCompletedGimmick();
   };
 
   render() {
