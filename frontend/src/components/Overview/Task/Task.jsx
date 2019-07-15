@@ -6,6 +6,8 @@ import Timeline from "../Timeline/Timeline";
 import DueDate from "./DueDate";
 import Title from "./Title";
 
+const UPDATE_INTERVAL = 10000;
+
 const grow = keyframes`
   0% {
     transform:  scale(0.5);
@@ -47,19 +49,35 @@ const InfoWrapper = styled.div`
   display: flex;
   align-items: baseline;
 `;
+class Task extends React.Component {
+  componentDidMount() {
+    setInterval(() => this.forceUpdate(), UPDATE_INTERVAL);
+  }
 
-const Task = ({ description, index, lastDone, interval, _id, completed }) => (
-  <TaskWrapper index={index}>
-    <TopRowWrapper>
-      <InfoWrapper>
-        <Title description={description} />
-        <DueDate lastDone={lastDone} interval={interval} />
-      </InfoWrapper>
-      <ItemActions taskId={_id} />
-    </TopRowWrapper>
-    <Timeline completed={completed} />
-    <ProgressBar lastDone={lastDone} interval={interval} />
-  </TaskWrapper>
-);
+  render() {
+    const {
+      description,
+      index,
+      lastDone,
+      interval,
+      _id,
+      completed,
+    } = this.props;
+
+    return (
+      <TaskWrapper index={index}>
+        <TopRowWrapper>
+          <InfoWrapper>
+            <Title description={description} />
+            <DueDate lastDone={lastDone} interval={interval} />
+          </InfoWrapper>
+          <ItemActions taskId={_id} />
+        </TopRowWrapper>
+        <Timeline completed={completed} />
+        <ProgressBar lastDone={lastDone} interval={interval} />
+      </TaskWrapper>
+    );
+  }
+}
 
 export default Task;

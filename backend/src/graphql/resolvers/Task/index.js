@@ -42,7 +42,6 @@ export default {
             $push: {
               completed: { timestamp, user },
             },
-            $set: { lastDone: timestamp },
           },
           { new: true }
         )
