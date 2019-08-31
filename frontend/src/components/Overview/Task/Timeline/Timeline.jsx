@@ -21,7 +21,7 @@ class Timeline extends React.Component {
 
   constructor(props) {
     super(props);
-    const sortedItems = this.sortAndScliceItems(props.completed);
+    const sortedItems = this.sortAndSliceItems(props.completed);
     const firstItem = sortedItems[0] && sortedItems[0].timestamp;
 
     this.state = {
@@ -36,14 +36,14 @@ class Timeline extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.completed.length !== this.props.completed.length) {
-      const sortedItems = this.sortAndScliceItems(this.props.completed);
+      const sortedItems = this.sortAndSliceItems(this.props.completed);
       const newFirstItem = sortedItems[0] && sortedItems[0].timestamp;
 
       this.setState({ firstItem: newFirstItem, selectedItem: newFirstItem });
     }
   }
 
-  sortAndScliceItems(items) {
+  sortAndSliceItems(items) {
     return items
       .sort((a, b) => b.timestamp - a.timestamp)
       .slice(0, MAX_DISPLAYED_ITEMS);
@@ -59,7 +59,7 @@ class Timeline extends React.Component {
   }
 
   render() {
-    const sortedItems = this.sortAndScliceItems(this.props.completed);
+    const sortedItems = this.sortAndSliceItems(this.props.completed);
 
     return (
       <TimelineWrapper>
