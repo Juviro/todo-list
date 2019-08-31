@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import IconButton from "../../General/Buttons/IconButton";
+import IconButton from "../../../General/Buttons/IconButton";
 
 const ItemActionsWrapper = styled.div`
   height: 60px;
