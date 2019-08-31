@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 import styled from "styled-components";
-import { colors } from "../../../constants/styles";
+import { colors } from "../../../../constants/styles";
 
 const DueDateWrapper = styled.div`
   display: inline-block;
