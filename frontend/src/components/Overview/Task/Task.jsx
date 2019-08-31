@@ -1,57 +1,25 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
-import ItemActions from "./ItemActionsContainer";
-import ProgressBar from "./ProgressBar";
-import Timeline from "../Timeline/Timeline";
-import DueDate from "./DueDate";
-import Title from "./Title";
+
+import ItemActions from "./TaskElements/ItemActionsContainer";
+import ProgressBar from "./TaskElements/ProgressBar";
+import DueDate from "./TaskElements/DueDate";
+import Title from "./TaskElements/Title";
+
+import Timeline from "./Timeline/Timeline";
+
+import { TaskWrapper, TopRowWrapper, InfoWrapper } from "./StyledTask";
 
 const UPDATE_INTERVAL = 10000;
 
-const grow = keyframes`
-  0% {
-    transform:  scale(0.5);
-  }
-  80% {
-    transform:  scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-`;
-
-const TaskWrapper = styled.div`
-  margin: 10px;
-  display: flex;
-  padding: 16px;
-  flex-wrap: wrap;
-  border-radius: 5px;
-  background-color: #fff;
-  width: calc(50% - 56px);
-  border: 2px solid #e7e7e7;
-  box-shadow: 3px 3px 10px -2px #ddd;
-
-  animation: ${grow} 0.3s linear;
-
-  @media (max-width: 700px) {
-    width: calc(100% - 56px);
-  }
-`;
-
-const TopRowWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const InfoWrapper = styled.div`
-  display: flex;
-  align-items: baseline;
-`;
 class Task extends React.Component {
+  intervalId;
+
   componentDidMount() {
-    setInterval(() => this.forceUpdate(), UPDATE_INTERVAL);
+    this.intervalId = setInterval(() => this.forceUpdate(), UPDATE_INTERVAL);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
   }
 
   render() {
