@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const UserCard = styled.div.attrs(props => ({
   style: {
-    backgroundColor: props.color,
-  },
+    backgroundColor: props.color
+  }
 }))`
   flex: 1;
   margin: 1vw;
@@ -38,7 +38,7 @@ const UserCard = styled.div.attrs(props => ({
 `;
 
 const UserName = styled.span`
-  font-size: calc((4vw + 4vh) / 2);
+  font-size: 2rem;
 `;
 
 const NameWrapper = styled.div`
